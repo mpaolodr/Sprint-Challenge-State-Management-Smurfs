@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import thunk from "thunk";
+import thunk from "redux-thunk";
 
 // reducer
 import rootReducer from "./reducers";
@@ -19,7 +19,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 // wrap in provider component
 
 ReactDOM.render(
-  <Provider>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById("root")
