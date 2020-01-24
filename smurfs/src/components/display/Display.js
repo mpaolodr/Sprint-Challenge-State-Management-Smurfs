@@ -3,26 +3,35 @@ import { connect } from "react-redux";
 
 // components
 import Smurf from "./Smurf";
+import AddSmurf from "./AddSmurf";
 
 // actions
-import { fetchData } from "../../actions";
+import { fetchData, setAdding } from "../../actions";
 
 const Display = props => {
-  const { data, fetchData } = props;
+  const { data, fetchData, setAdding, isAdding } = props;
 
   return (
     <div className="display-container">
       <button onClick={fetchData}>Grab Smurfs!</button>
-      {data.map(item => {
-        return <Smurf key={item.id} item={item} />;
-      })}
+      {isAdding ? (
+        <AddSmurf />
+      ) : (
+        <div>
+          {data.map(item => {
+            return <Smurf key={item.id} item={item} />;
+          })}
+          <button onClick={setAdding}>Add New Smurf</button>
+        </div>
+      )}
     </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    data: state.smurfReducer.data
+    data: state.smurfReducer.data,
+    isAdding: state.smurfReducer.isAdding
   };
 };
-export default connect(mapStateToProps, { fetchData })(Display);
+export default connect(mapStateToProps, { fetchData, setAdding })(Display);
