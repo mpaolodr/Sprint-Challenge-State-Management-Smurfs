@@ -1,10 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const Display = () => {
+// components
+import Smurf from "./Smurf";
+
+// actions
+import { fetchData } from "../../actions";
+
+const Display = props => {
+  const { data, fetchData } = props;
+
   return (
     <div className="display-container">
-      <h2>smuef component here</h2>
+      <button onClick={fetchData}>Grab Smurfs!</button>
+      {data.map(item => {
+        return <Smurf key={item.id} item={item} />;
+      })}
     </div>
   );
 };
@@ -14,4 +25,4 @@ const mapStateToProps = state => {
     data: state.smurfReducer.data
   };
 };
-export default connect(mapStateToProps, {})(Display);
+export default connect(mapStateToProps, { fetchData })(Display);
