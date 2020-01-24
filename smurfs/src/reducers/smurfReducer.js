@@ -1,5 +1,5 @@
 // import actions
-import { LOADING, FETCH_DATA, SET_ADD } from "../actions";
+import { LOADING, FETCH_DATA, SET_ADD, ADD_SMURF } from "../actions";
 
 const initialState = {
   isLoading: false,
@@ -26,6 +26,14 @@ export const smurfReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+        data: action.payload
+      };
+
+    case ADD_SMURF:
+      return {
+        ...state,
+        isLoading: false,
+        isAdding: false,
         data: action.payload
       };
 

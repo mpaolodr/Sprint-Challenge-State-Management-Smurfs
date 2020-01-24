@@ -6,16 +6,16 @@ import Smurf from "./Smurf";
 import AddSmurf from "./AddSmurf";
 
 // actions
-import { fetchData, setAdding } from "../../actions";
+import { fetchData, setAdding, addSmurf } from "../../actions";
 
 const Display = props => {
-  const { data, fetchData, setAdding, isAdding } = props;
+  const { data, fetchData, setAdding, isAdding, addSmurf } = props;
 
   return (
     <div className="display-container">
       <button onClick={fetchData}>Grab Smurfs!</button>
       {isAdding ? (
-        <AddSmurf />
+        <AddSmurf addSmurf={addSmurf} />
       ) : (
         <div>
           {data.map(item => {
@@ -34,4 +34,6 @@ const mapStateToProps = state => {
     isAdding: state.smurfReducer.isAdding
   };
 };
-export default connect(mapStateToProps, { fetchData, setAdding })(Display);
+export default connect(mapStateToProps, { fetchData, setAdding, addSmurf })(
+  Display
+);

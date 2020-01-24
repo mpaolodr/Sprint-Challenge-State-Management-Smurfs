@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const AddSmurf = () => {
-  const initialFormState = { name: "", age: null, height: "" };
+const AddSmurf = ({ addSmurf }) => {
+  const initialFormState = { name: "", age: "", height: "" };
   const [newSmurf, setNewSmurf] = useState(initialFormState);
 
   // change handler
@@ -18,7 +18,11 @@ const AddSmurf = () => {
   const handleSubmit = e => {
     e.preventDefault();
     // action goes here
-    console.log(newSmurf);
+    addSmurf({
+      name: newSmurf.name,
+      age: newSmurf.age,
+      height: newSmurf.height
+    });
     setNewSmurf(initialFormState);
   };
 
