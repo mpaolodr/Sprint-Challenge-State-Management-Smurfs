@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 // styles
-import "./App.css";
+import "./App.scss";
 
 // components
 import Display from "./display/Display";

@@ -5,14 +5,16 @@ import {
   SET_ADD,
   SET_EDIT,
   ADD_SMURF,
-  EDIT_SMURF
+  EDIT_SMURF,
+  ERROR
 } from "../actions";
 
 const initialState = {
   isLoading: false,
   isAdding: false,
   isEditing: false,
-  data: []
+  data: [],
+  error: ""
 };
 
 export const smurfReducer = (state = initialState, action) => {
@@ -56,6 +58,13 @@ export const smurfReducer = (state = initialState, action) => {
         isLoading: false,
         isEditing: false,
         data: action.payload
+      };
+
+    case ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
       };
 
     default:

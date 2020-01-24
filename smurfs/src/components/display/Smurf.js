@@ -4,13 +4,21 @@ const Smurf = props => {
   const { item, smurfToEdit, deleteSmurf } = props;
 
   return (
-    <div className="smurf-container">
-      <h3>{item.name}</h3>
-      <h3>{item.age}</h3>
-      <h3>{item.height}</h3>
+    <div className="smurf-card">
+      <div className="info">
+        <h3>{item.name}</h3>
+        <h3>{item.age}</h3>
+        <h3>{item.height}</h3>
+      </div>
 
-      <button onClick={() => smurfToEdit(item)}>Edit</button>
-      <button onClick={() => deleteSmurf(item.id)}>Delete</button>
+      <div className="btn-container">
+        <button className="special-btn" onClick={() => smurfToEdit(item)}>
+          Edit
+        </button>
+        <button className="special-btn" onClick={() => deleteSmurf(item.id)}>
+          Delete
+        </button>
+      </div>
     </div>
   );
 };

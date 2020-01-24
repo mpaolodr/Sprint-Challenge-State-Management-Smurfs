@@ -36,13 +36,17 @@ const Display = props => {
 
   return (
     <div className="display-container">
-      <button onClick={fetchData}>Grab Smurfs!</button>
+      <div className="grab-btn">
+        <button onClick={fetchData}>Grab Smurfs!</button>
+        <button onClick={setAdding}>Add New Smurf</button>
+      </div>
+
       {isAdding ? (
         <AddSmurf addSmurf={addSmurf} />
       ) : isEditing ? (
         <EditSmurf currentSmurf={currentSmurf} />
       ) : (
-        <div>
+        <div className="smurf-container">
           {data.map(item => {
             return (
               <Smurf
@@ -53,7 +57,6 @@ const Display = props => {
               />
             );
           })}
-          <button onClick={setAdding}>Add New Smurf</button>
         </div>
       )}
     </div>

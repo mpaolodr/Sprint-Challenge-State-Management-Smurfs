@@ -5,6 +5,7 @@ export const FETCH_DATA = "FETCH_DATA";
 export const LOADING = "LOADING";
 export const ADD_SMURF = "ADD_SMURF";
 export const EDIT_SMURF = "EDIT_SMURF";
+export const ERROR = "ERROR";
 
 export const SET_ADD = "SET_ADD";
 export const SET_EDIT = "SET_EDIT";
@@ -16,7 +17,7 @@ export const fetchData = () => dispatch => {
   axios
     .get(`http://localhost:3333/smurfs`)
     .then(res => dispatch({ type: FETCH_DATA, payload: res.data }))
-    .catch(err => console.log(err));
+    .catch(err => dispatch({ type: ERROR, payload: err.data }));
 };
 
 export const addSmurf = newSmurf => dispatch => {
@@ -24,7 +25,7 @@ export const addSmurf = newSmurf => dispatch => {
   axios
     .post(`http://localhost:3333/smurfs`, newSmurf)
     .then(res => dispatch({ type: ADD_SMURF, payload: res.data }))
-    .catch(err => console.log(err));
+    .catch(err => dispatch({ type: ERROR, payload: err.data }));
 };
 
 export const editSmurf = updatedSmurf => dispatch => {
@@ -32,7 +33,7 @@ export const editSmurf = updatedSmurf => dispatch => {
   axios
     .put(`http://localhost:3333/smurfs/${updatedSmurf.id}`, updatedSmurf)
     .then(res => dispatch({ type: EDIT_SMURF, payload: res.data }))
-    .catch(err => console.log(err));
+    .catch(err => dispatch({ type: ERROR, payload: err.data }));
 };
 
 export const deleteSmurf = smurfId => dispatch => {
@@ -40,7 +41,7 @@ export const deleteSmurf = smurfId => dispatch => {
   axios
     .delete(`http://localhost:3333/smurfs/${smurfId}`)
     .then(res => dispatch({ type: FETCH_DATA, payload: res.data }))
-    .catch(err => console.log(err));
+    .catch(err => dispatch({ type: ERROR, payload: err.data }));
 };
 
 // toggle action creators
