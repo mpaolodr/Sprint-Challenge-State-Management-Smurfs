@@ -35,6 +35,14 @@ export const editSmurf = updatedSmurf => dispatch => {
     .catch(err => console.log(err));
 };
 
+export const deleteSmurf = smurfId => dispatch => {
+  dispatch({ type: LOADING });
+  axios
+    .delete(`http://localhost:3333/smurfs/${smurfId}`)
+    .then(res => dispatch({ type: FETCH_DATA, payload: res.data }))
+    .catch(err => console.log(err));
+};
+
 // toggle action creators
 export const setAdding = () => {
   return {

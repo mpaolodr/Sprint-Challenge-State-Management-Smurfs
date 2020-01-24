@@ -7,7 +7,13 @@ import AddSmurf from "./AddSmurf";
 import EditSmurf from "./EditSmurf";
 
 // actions
-import { fetchData, setAdding, addSmurf, setEditing } from "../../actions";
+import {
+  fetchData,
+  setAdding,
+  addSmurf,
+  setEditing,
+  deleteSmurf
+} from "../../actions";
 
 const Display = props => {
   const {
@@ -17,7 +23,8 @@ const Display = props => {
     isAdding,
     addSmurf,
     isEditing,
-    setEditing
+    setEditing,
+    deleteSmurf
   } = props;
 
   const [currentSmurf, setCurrentSmurf] = useState({});
@@ -38,7 +45,12 @@ const Display = props => {
         <div>
           {data.map(item => {
             return (
-              <Smurf key={item.id} item={item} smurfToEdit={smurfToEdit} />
+              <Smurf
+                key={item.id}
+                item={item}
+                smurfToEdit={smurfToEdit}
+                deleteSmurf={deleteSmurf}
+              />
             );
           })}
           <button onClick={setAdding}>Add New Smurf</button>
@@ -60,17 +72,7 @@ const mapDispatchToProps = {
   fetchData,
   setAdding,
   addSmurf,
-  setEditing
+  setEditing,
+  deleteSmurf
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Display);
-
-// {
-//   /* <div>
-//           {data.map(item => {
-//             return (
-//               <Smurf key={item.id} item={item} smurfToEdit={smurfToEdit} />
-//             );
-//           })}
-//           <button onClick={setAdding}>Add New Smurf</button>
-//         </div> */
-// }

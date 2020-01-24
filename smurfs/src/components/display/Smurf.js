@@ -1,7 +1,7 @@
 import React from "react";
 
 const Smurf = props => {
-  const { item, smurfToEdit } = props;
+  const { item, smurfToEdit, deleteSmurf } = props;
 
   return (
     <div className="smurf-container">
@@ -10,7 +10,7 @@ const Smurf = props => {
       <h3>{item.height}</h3>
 
       <button onClick={() => smurfToEdit(item)}>Edit</button>
-      <button>Delete</button>
+      <button onClick={() => deleteSmurf(item.id)}>Delete</button>
     </div>
   );
 };
